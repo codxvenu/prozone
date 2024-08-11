@@ -20,7 +20,7 @@ const HorizontalNav = () => {
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const response = await axios.get('https://react-store-x8e5.vercel.app/balance', { withCredentials: true });
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/balance`, { withCredentials: true });
         setBalance(response.data.balance);
       } catch (error) {
         if (error.response && error.response.status === 401) {

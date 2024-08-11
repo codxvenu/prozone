@@ -21,7 +21,7 @@ function LoginSignup() {
   const [email, setEmail] = useState("");
   const [mdsCode, setMdsCode] = useState("");
   const [captcha, setCaptcha] = useState("");
-  const [captchaUrl, setCaptchaUrl] = useState("https://react-store-x8e5.vercel.app/captcha");
+  const [captchaUrl, setCaptchaUrl] = useState(`${process.env.NEXT_PUBLIC_BASE_API_URL}/captcha`);
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const router = useRouter(); // Use useRouter from next/router
 
@@ -30,7 +30,7 @@ function LoginSignup() {
   }, []);
 
   const fetchCaptcha = () => {
-    setCaptchaUrl(`https://react-store-x8e5.vercel.app/captcha?${Date.now()}`);
+    setCaptchaUrl(`${process.env.NEXT_PUBLIC_BASE_API_URL}/captcha?${Date.now()}`);
   };
 
   const handleUsernameChange = (event) => {
@@ -62,7 +62,7 @@ function LoginSignup() {
     event.preventDefault();
     setIsLoading(true); // Set loading state
 
-    const url = isLogin ? "https://react-store-x8e5.vercel.app/login" : "https://react-store-x8e5.vercel.app/signup";
+    const url = isLogin ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/login` : `${process.env.NEXT_PUBLIC_BASE_API_URL}/signup`;
     const data = isLogin ? { username, password, mdsCode, captcha } : { username, password, email };
 
     try {

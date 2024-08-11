@@ -6,7 +6,7 @@ const Graph = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get('https://react-store-x8e5.vercel.app/data')
+    axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/data`)
       .then(response => {
         const fetchedData = response.data;
         console.log('Fetched Data:', fetchedData); // Log fetched data

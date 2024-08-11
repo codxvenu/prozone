@@ -16,7 +16,7 @@ function Profile() {
     // Fetch user details when component loads
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('https://react-store-x8e5.vercel.app/profile', { withCredentials: true });
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/profile`, { withCredentials: true });
         const { username, email, created_at } = response.data;
         setUsername(username);
         setEmail(email);
@@ -34,7 +34,7 @@ function Profile() {
 
     try {
       const response = await axios.post(
-        'https://react-store-x8e5.vercel.app/profile/password',
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/profile/password`,
         {
           currentPassword,
           newPassword

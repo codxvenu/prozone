@@ -28,7 +28,7 @@ const Cart = () => {
   
 
   useEffect(() => {
-    fetch('https://react-store-x8e5.vercel.app/api/transactions')
+    fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/transactions`)
       .then(response => response.json())
       .then(data => {
         if (Array.isArray(data)) {
@@ -42,7 +42,7 @@ const Cart = () => {
 
   const handleItems = (transactionId , purchase_type) => {
     setIsloader(true);
-    fetch(`https://react-store-x8e5.vercel.app/api/transaction/${transactionId}`, {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/transaction/${transactionId}`, {
       method: 'GET',
       credentials: 'include' // Include credentials in the request
     })

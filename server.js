@@ -23,7 +23,7 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'https://react-store-x8e5.vercel.app/',
+  origin: 'https://react-store-x8e5.vercel.app',
   credentials: true
 }));
 

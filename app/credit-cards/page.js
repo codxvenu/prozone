@@ -68,7 +68,7 @@ const CreditCardForm =  () => {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-        fetch('https://react-store-x8e5.vercel.app/api/cities')
+        fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/cities`)
           .then(response => {
             if (response.ok) return response.json();
             return response.text().then(text => { throw new Error(text); });
@@ -76,14 +76,14 @@ const CreditCardForm =  () => {
           .then(data => setCities(data.map(item => item.city)))
           .catch(error => console.error('Error fetching cities:', error));
       
-        fetch('https://react-store-x8e5.vercel.app/api/banks')
+        fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/banks`)
           .then(response => {
             if (response.ok) return response.json();
             return response.text().then(text => { throw new Error(text); });
           })
           .then(data => setBanks(data.map(item => item.bankname)))
           .catch(error => console.error('Error fetching banks:', error));
-        fetch('https://react-store-x8e5.vercel.app/api/country')
+        fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/country`)
           .then(response => {
             if (response.ok) return response.json();
             return response.text().then(text => { throw new Error(text); });
@@ -91,7 +91,7 @@ const CreditCardForm =  () => {
           .then(data => setCountrys(data.map(item => item.country)))
           .catch(error => console.error('Error fetching country:', error));
 
-        fetch('https://react-store-x8e5.vercel.app/api/level')
+        fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/level`)
           .then(response => {
             if (response.ok) return response.json();
             return response.text().then(text => { throw new Error(text); });
@@ -99,7 +99,7 @@ const CreditCardForm =  () => {
           .then(data => setLevels(data.map(item => item.level)))
           .catch(error => console.error('Error fetching level:', error));
 
-        fetch('https://react-store-x8e5.vercel.app/api/brand')
+        fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/brand`)
           .then(response => {
             if (response.ok) return response.json();
             return response.text().then(text => { throw new Error(text); });
@@ -107,7 +107,7 @@ const CreditCardForm =  () => {
           .then(data => setBrands(data.map(item => item.brand)))
           .catch(error => console.error('Error fetching brand:', error));
 
-        fetch('https://react-store-x8e5.vercel.app/api/state')
+        fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/state`)
           .then(response => {
             if (response.ok) return response.json();
             return response.text().then(text => { throw new Error(text); });
@@ -115,7 +115,7 @@ const CreditCardForm =  () => {
           .then(data => setStates(data.map(item => item.state)))
           .catch(error => console.error('Error fetching state:', error));
 
-        fetch('https://react-store-x8e5.vercel.app/api/base')
+        fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/base`)
           .then(response => {
             if (response.ok) return response.json();
             return response.text().then(text => { throw new Error(text); });
@@ -159,7 +159,7 @@ const CreditCardForm =  () => {
     setIsloader(true)
     e.preventDefault();
     try {
-      const response = await fetch('https://react-store-x8e5.vercel.app/api/cards', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/cards`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -213,8 +213,8 @@ const CreditCardForm =  () => {
     };
 
     try {
-      const response = await axios.post('https://react-store-x8e5.vercel.app/api/preorder', body);
-      toast.success('Preorder request sent successfully');
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/preorder', body);
+      toast.success('Preorder request sent successfully`);
     } catch (error) {
       console.error('Error sending preorder request', error);
       toast.error('Failed to send preorder request');
@@ -279,7 +279,7 @@ const handleRowSelect = (id) => {
   
     console.log('Request payload:', requestBody); // Debugging: Log the request payload
     try {
-      const response = await fetch('https://react-store-x8e5.vercel.app/api/purchase', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/purchase`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -34,7 +34,7 @@ const BillingPage = () => {
   const handleSubmit = async () => {
     isloader(true)
     try {
-      await axios.post('https://react-store-x8e5.vercel.app/api/submit-transaction', {
+      await axios.post(`${process.env.NEXT_PUBLIC_BASE_API_URL}api/submit-transaction`, {
         transactionId    
       }, { withCredentials: true });
       alert('Transaction ID sent successfully!');
