@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Import Google Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+/* Apply the font globally */
+body {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+/* Light Theme */
+.light {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* Dark Theme */
+.dark {
+  --background-color: #31363F;
+  --text-color: #ffffff;
+}
+
+/* Apply theme colors */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+  .ligth a{
+    background-color:var(--background-color);
+    color: var(--text-color);
+  }

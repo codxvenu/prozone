@@ -1,0 +1,23 @@
+/* Light Theme */
+.light-theme {
+    --background-color: #ffffff;
+    --text-color: #000000;
+  }
+  
+  /* Dark Theme */
+  .dark-theme {
+    --background-color: #000000;
+    --text-color: #ffffff;
+  }
+  
+  /* General Styles */
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  button {
+    background-color: var(--text-color);
+    color: var(--background-color);
+  }
+  

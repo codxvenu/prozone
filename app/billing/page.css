@@ -1,0 +1,72 @@
+body{
+  background: #131313;
+  color: #eee;
+}
+/* BillingPage.css */
+.app {
+  display: flex;
+  background: #31363F;
+}
+
+.main-content {
+  flex-grow: 1;
+}.app {
+  display: flex;
+  background: #31363F;
+}
+
+.main-content {
+  flex-grow: 1;
+}
+.main-form {
+  padding: 47px 30px 10px 30px;
+  background: #222831;
+  color: #fff;
+  border-radius: 25px 0 0 0;
+  min-height: 90vh;
+}
+  h1{
+    font-size: 2rem;
+    color: chocolate;
+  }
+  p{
+    font-size: larger;
+  }
+  h2{
+    font-size: larger;
+    color: brown;
+  }
+  canvas{
+    margin: 0 auto;
+  }
+  .wallet-info {
+    margin: 20px 0;
+  }
+  
+  .transaction-id {
+    margin-top: 20px;
+  }
+  
+  input {
+    padding: 10px;
+    width: 60%;
+    margin-right: 10px;
+    border-radius: 10px;
+    color: black  ;
+  }
+  
+  button {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #ed5d15 ;
+    color: white;
+  }
+
+  #address{
+    background: white;
+    padding: 0.5rem;
+    width: 85%;
+    margin: 20px 0;
+    font-weight: bolder;
+    text-align: center;
+  }

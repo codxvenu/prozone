@@ -1,0 +1,32 @@
+.main-div {
+    width: 86vw;
+    height: 92vh;
+    background: var(--background2);
+    border-radius: 40px 0px 0px 0px;
+    padding: 3.09rem 2.9rem;
+    color:  var(--text-color);
+}
+
+.div1,.div2,.div3{
+    background-color: var(--backgroundform);    
+    border-radius: 14px;
+    height: 200px;
+}
+.downcontainer{
+    grid-template-columns: 1fr 2fr;
+}
+.div4,.div5{
+    height: 375px;
+    background-color: var(--backgroundform);    
+    border-radius: 14px;
+    margin-top: 20px;
+}
+div h1{
+    color :#ff6600
+}
+.div4 canvas{
+    width: 400px !important;
+    height: 180px !important;
+    margin-top: 135px;
+
+}

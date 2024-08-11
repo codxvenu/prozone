@@ -1,0 +1,30 @@
+.app {
+    display: flex;
+    background: #31363F;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+  }
+  .main-form {
+    padding: 47px 30px 10px 30px;
+    background: var(--background2);
+    color:var(--text-color);
+    border-radius: 25px 0 0 0;
+    max-height: 92vh;
+    overflow-y: scroll;    
+        width: 86vw;
+}
+
+
+.main-form div{
+    padding: 2rem;
+}
+p{
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+}
+::-webkit-scrollbar {
+    width: 0; /* Adjust width here */
+  }

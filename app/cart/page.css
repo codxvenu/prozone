@@ -1,0 +1,83 @@
+.app {
+    display: flex;
+    background: #31363F;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+  }
+  .main-form {
+    padding: 47px 30px 10px 30px;
+    background: var(--background2);
+    color:var(--text-color);
+    border-radius: 25px 0 0 0;
+    min-height: 92vh;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background: #2b2d2f;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  th, td {
+    padding: 12px;
+    border-left: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    text-align: center;
+  }
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+  tbody tr td{
+    background: var(--backgroundform);
+    color: var(--text-color);
+    border-radius: 0px;
+  }
+  
+  th:first-child,td:first-child{
+    border-left: none;
+  }
+  
+  th {
+    border-radius: 10px;
+  }
+/* Add these styles to your CSS file */
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .main label{
+    background: black;
+    color: white;
+  }
+  .main input{
+    color: #eee;
+    background: #20313e;
+  }
+  .main h1{
+    color: white;
+  }

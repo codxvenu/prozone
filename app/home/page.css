@@ -1,0 +1,9 @@
+.app {
+    display: flex;
+    background-color: #31363F;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+  }
+  

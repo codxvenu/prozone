@@ -1,0 +1,135 @@
+
+
+body {
+  background: linear-gradient(252deg, #0b243a, #030b12);
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  border-radius: 10px;
+ display:flex;
+  width: 760px;
+  background-color: #0f131e;
+}
+.img {
+  width: 50%;
+  color: #e87c34;
+  
+}
+img{
+  height: 100%;
+}
+.form-container {
+  background-color: #0f131e;
+  padding: 30px;
+  border-radius: 10px;
+  width: 50%;
+}
+
+
+h2  {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+input {
+  width: 85%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3838386e;
+  color: white;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+}
+
+span{
+  width: 15%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #3838386e;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+}
+input::placeholder {
+  color: #999;
+  transition: color 0.3s;
+}
+input:focus::placeholder  {
+  color: white; /* Change placeholder color on focus */
+}
+.submit {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff6600;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.form-group{
+  display: flex;
+}
+button:hover {
+  background-color: #e87c34;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #ff6600;
+}
+
+.captcha-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.captcha-image {
+  width: 50%;
+  height: 45px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+p{
+  margin-top: 20px;
+  text-align: center;
+}
+p a{
+  color: #ff6600;
+  font-weight: 800;
+}
+.Toastify__toast{
+    width: auto;
+}

@@ -1,0 +1,86 @@
+.horizontal-nav {
+    display: flex;
+    align-items: center;
+    background-color: #1a2833;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  .main-content{
+    background-color: #1a2833;
+  }
+  .horizontal-nav .become-seller , .btn {
+    background-color: #ff6600;
+    border: none;
+    padding: 5px 8px;
+    color: #EEEEEE;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  .horizontal-nav .balance {
+    font-size: 13px;
+  }
+  
+  .horizontal-nav .links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .horizontal-nav .links a , .group{
+  
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    gap: 15px;
+    border: none;
+    padding: 0.38rem 0.88rem;
+    /* border: 50px; */
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: var(--background-color);
+    align-items: center;
+    height: 35px;
+}
+
+
+  
+  
+  .horizontal-nav .profile-pic {
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  .horizontal-nav svg {
+    width: 14px;
+  }
+  /* Light Theme */
+  .light {
+  --background-color: white;
+  --text-color: #000000;
+  --background2 : #efefef;
+  --backgrounddiv : #eee;
+  --backgroundform : white;
+}
+
+/* Dark Theme */
+.dark {
+  --background-color: black;
+  --text-color: #ffffff;
+  --background2 : #081a29;
+  --backgrounddiv : #525a6795;
+  --backgroundform : #2e404e;
+}
+.seo{
+  border: .25px solid whitesmoke;
+  border-radius: 10px;
+  gap: 10px;
+  padding: 5px 4px;
+}
+.text-gray-700{
+  color: white;
+}
+.z-10{
+  min-width: auto;
+}
