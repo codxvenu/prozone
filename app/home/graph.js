@@ -6,7 +6,7 @@ const Graph = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get('https://nocash.cc/out/data')
+    axios.get('https://react-store-x8e5.vercel.app/data')
       .then(response => {
         const fetchedData = response.data;
         console.log('Fetched Data:', fetchedData); // Log fetched data

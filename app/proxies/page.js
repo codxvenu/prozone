@@ -62,7 +62,7 @@ const CreditCardForm =  () => {
   const [data, setData] = useState([]);
   useEffect(() => {
        
-    fetch('https://nocash.cc/out/api/country')
+    fetch('https://react-store-x8e5.vercel.app/api/country')
     .then(response => {
       if (response.ok) return response.json();
       return response.text().then(text => { throw new Error(text); });
@@ -70,7 +70,7 @@ const CreditCardForm =  () => {
     .then(data => setCountrys(data.map(item => item.country)))
     .catch(error => console.error('Error fetching country:', error));
 
-    fetch('https://nocash.cc/out/api/state')
+    fetch('https://react-store-x8e5.vercel.app/api/state')
     .then(response => {
       if (response.ok) return response.json();
       return response.text().then(text => { throw new Error(text); });
@@ -105,7 +105,7 @@ const CreditCardForm =  () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://nocash.cc/out/api/Proxies', {
+      const response = await fetch('https://react-store-x8e5.vercel.app/api/Proxies', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ const handleRowSelect = (id) => {
   
     console.log('Request payload:', requestBody); // Debugging: Log the request payload
     try {
-      const response = await fetch('https://nocash.cc/out/api/purchase_proxies', {
+      const response = await fetch('https://react-store-x8e5.vercel.app/api/purchase_proxies', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -61,7 +61,7 @@ function bins() {
     };  
     useEffect(() => {
        
-          fetch('https://nocash.cc/out/api/country')
+          fetch('https://react-store-x8e5.vercel.app/api/country')
             .then(response => {
               if (response.ok) return response.json();
               return response.text().then(text => { throw new Error(text); });
@@ -69,7 +69,7 @@ function bins() {
             .then(data => setCountrys(data.map(item => item.country)))
             .catch(error => console.error('Error fetching country:', error));
   
-          fetch('https://nocash.cc/out/api/level')
+          fetch('https://react-store-x8e5.vercel.app/api/level')
             .then(response => {
               if (response.ok) return response.json();
               return response.text().then(text => { throw new Error(text); });
@@ -115,7 +115,7 @@ function bins() {
       isloader(true)
         e.preventDefault();
         try {
-          const response = await fetch('https://nocash.cc/out/api/bins', {
+          const response = await fetch('https://react-store-x8e5.vercel.app/api/bins', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ function bins() {
     
       console.log('Request payload:', requestBody); // Debugging: Log the request payload
       try {
-        const response = await fetch('https://nocash.cc/out/api/purchase_bins', {
+        const response = await fetch('https://react-store-x8e5.vercel.app/api/purchase_bins', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

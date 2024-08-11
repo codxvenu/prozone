@@ -37,7 +37,7 @@ const LinearGraph = () => {
     });
 
     useEffect(() => {
-      fetch('https://nocash.cc/out/api/graph-data') // Update URL if needed
+      fetch('https://react-store-x8e5.vercel.app/api/graph-data') // Update URL if needed
           .then(response => response.json())
           .then(data => {
               const labels = data.map(entry => entry.day);
