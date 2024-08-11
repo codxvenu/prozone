@@ -23,7 +23,7 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'https://react-store-x8e5.vercel.app',
+  origin: `${process.env.NEXT_PUBLIC_BASE_API_URL}`,
   credentials: true
 }));
 
