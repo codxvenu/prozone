@@ -10,22 +10,21 @@ const app = express();
 const port = 443;
 
 // Middleware
+app.set("trust proxy", 1);
+// Middleware
 app.use(session({
-  secret: 'nocash',
+  secret: 'your_secret_key',
   resave: false,
-  saveUninitialized: true,
-  cookie: {
-    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-    httpOnly: true, // Helps prevent XSS attacks
-    maxAge: 24 * 60 * 60 * 1000 // Cookie expiration time (1 day)
-  }
+  saveUninitialized: false,
 }));
 
+
 app.use(bodyParser.json());
-app.use(cors({
-  origin: `${process.env.NEXT_PUBLIC_BASE_API_URL}`,
+const corsOptions = {
+  origin: process.env.NEXT_PUBLIC_BASE_API_URL, // Use the environment variable
+  // origin: "http://localhost:3000",
   credentials: true
-}));
+};
 
 // MySQL connection pooling
 const db = mysql.createPool({
@@ -64,11 +63,10 @@ handleDisconnect();
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'vasulallu09@gmail.com',
-    pass: 'vfqw tywz jksm fiqb' // Your app password
+    user: 'viparraich@gmail.com',
+    pass: 'nvle mnas ajmq dphr' // Your app password
   }
 });
-
 const sendMdsCodeEmail = (email, mdsCode) => {
   const mailOptions = {
     from: 'vasulallu09@gmail.com',
