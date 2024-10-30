@@ -25,7 +25,7 @@ const corsOptions = {
    //origin: "https://react-store-wore.vercel.app/",
   credentials: true
 };
-
+app.use(cors(corsOptions));
 // MySQL connection pooling
 const db = mysql.createPool({
   connectionLimit: 10,
