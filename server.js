@@ -21,8 +21,8 @@ app.use(session({
 
 app.use(bodyParser.json());
 const corsOptions = {
- // origin: process.env.NEXT_PUBLIC_BASE_API_URL, // Use the environment variable
-   origin: "https://react-store-wore.vercel.app/",
+ origin: process.env.FRONTEND_URL, // Use the environment variable
+   //origin: "https://react-store-wore.vercel.app/",
   credentials: true
 };
 
