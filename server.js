@@ -31,9 +31,9 @@ app.use(cors({
 const db = mysql.createPool({
   connectionLimit: 10,
   host: 'server759.iseencloud.net',
-  user: 'nocash_cc_hub',
-  password: 'nocash_cc_hub',
-  database: 'nocash_cc_hub',
+  user: 'nocash_cc_zone',
+  password: 'nocash_cc_zone',
+  database: 'nocash_cc_zone',
   port: 3306
 });
 
