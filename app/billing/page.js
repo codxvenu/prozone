@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import QRCode from 'qrcode.react';
 import axios from 'axios';
-
+import VerticalNav from '../home/verticalnav';
 import HorizontalNav from '../home/horizontal';
 import './page.css';
 
