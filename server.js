@@ -13,19 +13,30 @@ const port = 443;
 app.set("trust proxy", 1);
 // Middleware
 app.use(session({
-  secret: 'your_secret_key',
-  resave: false,
-  saveUninitialized: false,
-}));
-
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: false,
+  }));
+  
 
 app.use(bodyParser.json());
 const corsOptions = {
- origin: process.env.FRONTEND_URL, // Use the environment variable
-   //origin: "https://react-store-wore.vercel.app/",
-  credentials: true
-};
-app.use(cors(corsOptions));
+    origin: process.env.FRONTEND_URL, // Use the environment variable
+    credentials: true
+  };
+  
+  app.use(cors(corsOptions));
+
+  // Centralized error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Server Error:', err.stack);
+    res.status(500).send({ message: 'Internal Server Error' });
+  });
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`);
+    next();
+  });
+  
 // MySQL connection pooling
 const db = mysql.createPool({
   connectionLimit: 10,
