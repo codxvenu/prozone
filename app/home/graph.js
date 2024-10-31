@@ -6,7 +6,7 @@ const Graph = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/data`)
+    axios.get(`/api/data`)
       .then(response => {
         const fetchedData = response.data;
         console.log('Fetched Data:', fetchedData); // Log fetched data
@@ -16,7 +16,6 @@ const Graph = () => {
         const cvvData = fetchedData.map(item => item.cvv);
         const ssnData = fetchedData.map(item => item.ssn);
         const checkerData = fetchedData.map(item => item.checker);
-        const floodsData = fetchedData.map(item => item.floods);
 
         const chartData = {
           labels,
@@ -28,21 +27,15 @@ const Graph = () => {
               fill: false,
             },
             {
-              label: 'SSN',
+              label: 'bins',
               data: ssnData,
               borderColor: 'rgba(153,102,255,1)',
               fill: false,
             },
             {
-              label: 'Checker',
+              label: 'Proxies',
               data: checkerData,
               borderColor: 'rgba(255,159,64,1)',
-              fill: false,
-            },
-            {
-              label: 'Floods',
-              data: floodsData,
-              borderColor: 'rgba(54,162,235,1)',
               fill: false,
             }
           ]

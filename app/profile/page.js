@@ -5,7 +5,11 @@ import './page.css';
 import VerticalNav from '../home/verticalnav';
 import HorizontalNav from '../home/horizontal';
 
-function Profile() {
+import { useNav } from '../home/NavContext';
+
+const Profile = () => {
+
+  const { nav } = useNav();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [creation, setCreation] = useState('');
@@ -16,7 +20,8 @@ function Profile() {
     // Fetch user details when component loads
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/profile`, { withCredentials: true });
+        const user = localStorage.getItem('username');
+        const response = await axios.get(`/api/profile?username=${user}`, {withCredentials: true });
         const { username, email, created_at } = response.data;
         setUsername(username);
         setEmail(email);
@@ -31,13 +36,15 @@ function Profile() {
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
-
+    const username = localStorage.getItem('username');
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/profile/password`,
+        `/api/profile/password`,
         {
+          
           currentPassword,
-          newPassword
+          newPassword,
+          username
         },
         { withCredentials: true }
       );
@@ -61,10 +68,14 @@ function Profile() {
 
   return (
     <div className="app">
-      <VerticalNav />
+     
       <div className="main-content">
         <HorizontalNav />
-        <div className="main-form grid grid-cols-2 g-5">
+        <div className='flex flex-row'>
+
+       
+        <VerticalNav />
+        <div className={nav ? 'main-form grid grid-cols-2 g-5 hide' : 'main-form grid grid-cols-2 g-5 nohide'}>
           <div className='acc'>
             <h1 className='text-3xl mb-5'>Account Info</h1>
             <h1 className='mb-2'>UserName : {username}</h1>
@@ -104,7 +115,7 @@ function Profile() {
               <div></div>
               <button type="submit">Save Changes</button>
             </form>
-          </div>
+          </div> </div>
         </div>
       </div>
     </div>

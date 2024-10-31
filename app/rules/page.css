@@ -14,6 +14,7 @@
     max-height: 92vh;
     overflow-y: scroll;    
         width: 86vw;
+        height: calc(100% - 61px);
 }
 
 
@@ -28,3 +29,13 @@ p{
 ::-webkit-scrollbar {
     width: 0; /* Adjust width here */
   }
+  @media only screen and (max-width: 768px){
+  .main-form {
+    padding: 47px 30px 10px 30px;
+    background: var(--background2);
+    color: var(--text-color);
+    border-radius: 0;
+    max-height: 92vh;
+    overflow-y: scroll;
+     width: auto; 
+}}

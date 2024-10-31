@@ -1,153 +1,36 @@
 "use client"
-import React, { useState, useEffect, useRef } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import "../credit-cards/page.css"
 import "./page.css"
-import HorizontalNav from '../home/horizontal';
-import VerticalNav from '../home/verticalnav';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { faTwitter, faFontAwesome, faTelegram } from '@fortawesome/free-brands-svg-icons'
-library.add(fas, faTwitter, faFontAwesome)
-import axios from 'axios';
-import { useNav } from '../home/NavContext';
-const CreditCardForm = () => {
-  const { nav } = useNav();
 
-  const [isfilter, setIsfilter] = useState(false);
+
+const Addcc = () => {
+
   const [isloader, setIsloader] = useState(false);
-  const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(100);
-  const [cities, setCities] = useState([]);
-  const [banks, setBanks] = useState([]);
-  const [country, setCountrys] = useState([]);
-  const [levels, setLevels] = useState([]);
-  const [brands, setBrands] = useState([]);
-  const [states, setStates] = useState([]);
-  const [bases, setBases] = useState([]);
-  const [selectedRows, setSelectedRows] = useState(new Set());
-  const [tdata, settData] = useState([]);
-  const [tableData, setTableData] = useState([]); // State to hold the table data
-
-
-  const priceGap = 1;
-
-  useEffect(() => {
-    if (minValue > maxValue - priceGap) {
-      if (minValue < 0)
-        setMinValue(maxValue - priceGap);
-    }
-  }, [minValue, maxValue]);
-
-  const handlefilterChange = (e) => {
-    setIsfilter(e.target.checked);
-  };
-
-  const handleMinRangeChange = (e) => {
-    const value = Number(e.target.value);
-    if (value < 0) {
-      setMinValue(0);
-    } else if (value > maxValue - priceGap) {
-      setMinValue(maxValue - priceGap);
-    } else {
-      setMinValue(value);
-    }
-  };
-
-  const handleMaxRangeChange = (e) => {
-    const value = Number(e.target.value);
-    if (value > 100) {
-      setMaxValue(100);
-    } else if (value < minValue + priceGap) {
-      setMaxValue(minValue + priceGap);
-    } else {
-      setMaxValue(value);
-    }
-  };
-
-
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetch(`/api/cities`)
-      .then(response => {
-        if (response.ok) return response.json();
-        return response.text().then(text => { throw new Error(text); });
-      })
-      .then(data => setCities(data.map(item => item.city)))
-      .catch(error => console.error('Error fetching cities:', error));
-
-    fetch(`/api/banks`)
-      .then(response => {
-        if (response.ok) return response.json();
-        return response.text().then(text => { throw new Error(text); });
-      })
-      .then(data => setBanks(data.map(item => item.bankname)))
-      .catch(error => console.error('Error fetching banks:', error));
-    fetch(`/api/country`)
-      .then(response => {
-        if (response.ok) return response.json();
-        return response.text().then(text => { throw new Error(text); });
-      })
-      .then(data => setCountrys(data.map(item => item.country)))
-      .catch(error => console.error('Error fetching country:', error));
-
-    fetch(`/api/level`)
-      .then(response => {
-        if (response.ok) return response.json();
-        return response.text().then(text => { throw new Error(text); });
-      })
-      .then(data => setLevels(data.map(item => item.level)))
-      .catch(error => console.error('Error fetching level:', error));
-
-    fetch(`/api/brand`)
-      .then(response => {
-        if (response.ok) return response.json();
-        return response.text().then(text => { throw new Error(text); });
-      })
-      .then(data => setBrands(data.map(item => item.brand)))
-      .catch(error => console.error('Error fetching brand:', error));
-
-    fetch(`/api/state`)
-      .then(response => {
-        if (response.ok) return response.json();
-        return response.text().then(text => { throw new Error(text); });
-      })
-      .then(data => setStates(data.map(item => item.state)))
-      .catch(error => console.error('Error fetching state:', error));
-
-    fetch(`/api/base`)
-      .then(response => {
-        if (response.ok) return response.json();
-        return response.text().then(text => { throw new Error(text); });
-      })
-      .then(data => setBases(data.map(item => item.base)))
-      .catch(error => console.error('Error fetching state:', error));
-  }, []);
-
-  // State to track selected rows
-
-
-  // Handler for "Select All" checkbox
 
   const [formData, setFormData] = useState({
-    shop: '',
-    seller: '',
-    city: '',
-    expirationDate: '',
-    zip: '',
-    level: '',
+    ccnum: '',
+    cvv: '',
+    exp: '',
+    bin: '',
     country: '',
-    brand: '',
-    bins: '',
-    bankName: '',
     state: '',
+    city: '',
+    zip: '',
+    bankName: '',
+    level: '',
+    brand: '',
     types: '',
     bases: '',
-    binPriceRange: [0, 100],
-    extendedOptions: '',
-  });
+    price: '',
+    address : '',
+    binfo : '',
+            email: "",
+             dob : '',
+    phone : ''
+    });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -158,186 +41,77 @@ const CreditCardForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    setIsloader(true)
     e.preventDefault();
+    setIsloader(true);
     try {
-      const response = await fetch(`/api/cards`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          shop: formData.shop,
-          seller: formData.seller,
-          city: formData.city,
-          expirationDate: formData.expirationDate,
-          zip: formData.zip,
-          level: formData.level,
-          country: formData.country,
-          brand: formData.brand,
-          bin: formData.bin,
-          bankName: formData.bankName,
-          state: formData.state,
-          bases: formData.bases,
-          types: formData.types,
-          minprice: minValue,
-          maxprice: maxValue,
-          username: localStorage.getItem("username")
-        }),
-      });
-
-     
-     const resultss = await response.json()
-      console.log(resultss);
-      
-      settData(resultss);
-      if (Array.isArray(tdata)) {
-        setTableData(tdata); // Set the tableData state to the array response
-        setIsloader(false)
-      } else {
-        console.error('Expected an array response');
+        // Perform the POST request to add data to the SQL database
+        const response = await fetch("/api/add-card", {
+          method: "POST", // Use POST method to submit the data
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+  
+        if (response.ok) {
+          toast.success("Card data added successfully");
+          setFormData({
+            bin: "",
+            country: "",
+            state: "",
+            city: "",
+            zip: "",
+            bankName: "",
+            level: "",
+            brand: "",
+            types: "",
+            bases: "",
+            price: "",
+             address : '',
+    binfo : '',
+            email: "",
+             dob : '',
+    phone : '',
+    name: ''
+          });
+        } else {
+          const errorData = await response.json();
+          console.log(errorData.message);
+          
+          toast.error(`Failed to add card data: ${errorData.message}`);
+        }
+      } catch (error) {
+        toast.error("An unexpected error occurred");
+      } finally {
+        setIsloader(false);
       }
-
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-  const handlePreorder = async () => {
-    const body = {
-      email: formData.email,
-      city: formData.city,
-      state: formData.state,
-      level: formData.level,
-      country: formData.country,
-      brand: formData.brand,
-      bin: formData.bin,
-      bases: formData.bases,
-      bankName: formData.bankName,
-      zip: formData.zip,
-      minValue: minValue,
-      maxValue: maxValue
     };
 
-    try {
-      const response = await axios.post('/api/preorder', body);
-      toast.success('Preorder request sent successfully');
-    } catch (error) {
-      console.error('Error sending preorder request', error);
-      toast.error('Failed to send preorder request');
-    }
-  };
-
-
-
-  const handleClear = () => {
-    setFormData({
-      shop: '',
-      seller: '',
-      city: '',
-      expirationDate: '',
-      zip: '',
-      level: '',
-      country: '',
-      brand: '',
-      bins: '',
-      bankName: '',
-      state: '',
-      type: '',
-      bases: '',
-      binPriceRange: [0, 100],
-      cvrRange: [0, 100],
-      extendedOptions: '',
-    });
-    setData([]);
-    settData([]);
-    setTableData([]);
-    setSelectedRows(new Set());
-  };
-  // Handler for "Select All" checkbox
-  const handleSelectAll = (e) => {
-    if (e.target.checked) {
-      setSelectedRows(new Set(tableData.map(item => item.id)));
-    } else {
-      setSelectedRows(new Set());
-    }
-  };
-
-  // Handler for individual row selection
-  const handleRowSelect = (id) => {
-    setSelectedRows(prev => {
-      const newSelection = new Set(prev);
-      if (newSelection.has(id)) {
-        newSelection.delete(id);
-      } else {
-        newSelection.add(id);
-      }
-      return newSelection;
-    });
-  };
-
-  const handleorder = async () => {
-    setTableData([]);
-    settData([]);
-    setIsloader(true)
-    // Extract the selected rows data based on the IDs in selectedRows
-    const selectedData = Array.from(selectedRows).map(id => tableData.find(row => row.id === id));
-    const username = localStorage.getItem('username');
-    // Prepare the request payload
-    const requestBody = JSON.stringify({ items: selectedData, username });
-
-    console.log('Request payload:', requestBody); // Debugging: Log the request payload
-    try {
-      const response = await fetch(`/api/purchase`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: requestBody,
-        credentials: 'include' // This includes credentials (cookies, HTTP auth) with the request
-      })
-
-      const result = await response.json();
-
-      if (response.ok) {
-        toast.success(result.message);
-        // Optionally reload the page or update state
-        setIsloader(false)
-      } else {
-        toast.error(result.message);
-        setIsloader(false)
-      }
-    } catch (error) {
-      console.log(error);
-      
-      toast.error('An unexpected error occurred');
-    }
-  };
-
-
-
   return (
-    <div className="app">
-
-      <div className="main-content">
-        <HorizontalNav />
-      <div className='flex'>
-            <VerticalNav />
-            <div className={nav ? 'main-form hide' : 'main-form nohide'}>
-
-
-            {!isfilter && (
-
-              <form onSubmit={handleSubmit}>
-                <div className='gap-6 break'>
-
-
-                  <div className="form-row">
-                    <label>Bins</label>
-                    <input type="text" name="bin" value={formData.bin} onChange={handleInputChange} placeholder="601100,492181,..." />
-                  </div>
-                  <div className="form-row">
-                    <label>Country</label>
-                    <select placeholder="Enter Country" name="country" value={formData.country} onChange={handleInputChange}>
+    <div className="admin-app">
+      <div className="main-content admin-main">
+          <div className= 'admin-form '>
+            <form onSubmit={handleSubmit}>
+              <div className='gap-6 flex flex-wrap'>
+                <div className="form-row">
+                  <label>Card Number</label>
+                  <input type="text" name="ccnum" value={formData.ccnum} onChange={handleInputChange} placeholder="Enter Card Number" />
+                </div>
+                <div className="form-row">
+                  <label>CVV</label>
+                  <input type="text" name="cvv" value={formData.cvv} onChange={handleInputChange} placeholder="Enter Cvv" />
+                </div>
+                <div className="form-row">
+                  <label>Expiry</label>
+                  <input type="text" name="exp" value={formData.exp} onChange={handleInputChange} placeholder="Enter Exp" />
+                </div>
+                <div className="form-row">
+                  <label>BIN</label>
+                  <input type="text" name="bin" value={formData.bin} onChange={handleInputChange} placeholder="Enter BIN" />
+                </div>
+                <div className="form-row">
+                  <label>Country</label>
+                  <select placeholder="Enter Country" name="country" value={formData.country} onChange={handleInputChange}>
                   <option value="">All Countries</option>
         <option>AW-Aruba</option>
         <option>AF-Afghanistan</option>
@@ -567,46 +341,27 @@ const CreditCardForm = () => {
         <option>ZM-Zambia</option>
         <option>ZW-Zimbabwe</option>
                   </select>
-                  </div>
-                  <div className="form-row">
-                    <label>State</label>
-                    <select name="state" value={formData.state} onChange={handleInputChange}>
-                      <option value="">All States</option>
-                      {states.map(state => (
-                        <option key={state} value={state}>{state}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="form-row">
-                    <label>City</label>
-                    <select type="text" name="city" value={formData.city} onChange={handleInputChange} placeholder="City" >
-                      <option value="">Select City </option>
-                      {cities.map(city => (
-                        <option key={city} value={city}>{city}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="form-row break-sub">
-                    <label>ZIP</label>
-                    <input name="zip" value={formData.zip} onChange={handleInputChange} placeholder="10001,90001,95912,..." />
-                  </div>
-
-
-
-                  <div className="form-row">
-                    <label>Bank Name</label>
-                    <select type="text" name="bankName" className='bankname' value={formData.bankName} onChange={handleInputChange} placeholder="Please select" >
-                      <option value="">Select Bank</option>
-                      {banks.map(bankname => (
-                        <option key={bankname} value={bankname}>{bankname}</option>
-                      ))}
-                    </select>
-
-                  </div>
-                  <div className="form-row">
-                    <label>Level</label>
-                    <select name="level" value={formData.level} onChange={handleInputChange}>
+                </div>
+                <div className="form-row">
+                  <label>State</label>
+                  <input placeholder="Enter State" name="state" value={formData.state} onChange={handleInputChange}/>
+                   
+                </div>
+                <div className="form-row">
+                  <label>City</label>
+                  <input placeholder="Enter City    " name="city" value={formData.city} onChange={handleInputChange}/>
+                </div>
+                <div className="form-row">
+                  <label>ZIP</label>
+                  <input type="text" name="zip" value={formData.zip} onChange={handleInputChange} placeholder="Enter ZIP" />
+                </div>
+                <div className="form-row">
+                  <label>Bank Name</label>
+                  <input name="bankName"  placeholder="Enter Bank Name"value={formData.bankName} onChange={handleInputChange}/>
+                </div>
+                <div className="form-row">
+                  <label>Level</label>
+                  <select name="level" value={formData.level} onChange={handleInputChange}>
             <option value="">All Levels</option>
             <option>PREPAID</option>
             <option>ATM</option>
@@ -735,51 +490,47 @@ const CreditCardForm = () => {
             <option>PROPRIETARY/PREPAID</option>
         
                   </select>
-                  </div>
-
-                  <div className="form-row">
-                    <label>Brand</label>
-                    <select name="brand" value={formData.brand} onChange={handleInputChange}>
+                </div>
+                <div className="form-row">
+                  <label>Brand</label>
+                  <select name="brand" value={formData.brand} onChange={handleInputChange}>
                 
-                <option value="">All Brands</option>
-                <option value="local_card">LOCAL CARD</option>
-                <option value="mir">MIR</option>
-                <option value="mastercard">MASTERCARD</option>
-                <option value="diners_club">DINERS CLUB</option>
-                <option value="amex">AMEX</option>
-                <option value="jcb">JCB</option>
-                <option value="visa">VISA</option>
-                <option value="maestro">MAESTRO</option>
-                <option value="ebt">EBT</option>
-                <option value="rupay">RUPAY</option>
-                <option value="elocard">ELOCARD</option>
-                <option value="eftpos">EFTPOS</option>
-                <option value="cabal">CABAL</option>
-                <option value="discover">DISCOVER</option>
-                <option value="china_unionpay">CHINA UNIONPAY</option>
-                <option value="sbercard">SBERCARD</option>
-                <option value="nsme">NSMEP</option>
-                <option value="dinacard">DINACARD</option>
-                <option value="comproc">COMPROCARD</option>
-            </select>
-                  </div>
+        <option value="">All Brands</option>
+        <option value="local_card">LOCAL CARD</option>
+        <option value="mir">MIR</option>
+        <option value="mastercard">MASTERCARD</option>
+        <option value="diners_club">DINERS CLUB</option>
+        <option value="amex">AMEX</option>
+        <option value="jcb">JCB</option>
+        <option value="visa">VISA</option>
+        <option value="maestro">MAESTRO</option>
+        <option value="ebt">EBT</option>
+        <option value="rupay">RUPAY</option>
+        <option value="elocard">ELOCARD</option>
+        <option value="eftpos">EFTPOS</option>
+        <option value="cabal">CABAL</option>
+        <option value="discover">DISCOVER</option>
+        <option value="china_unionpay">CHINA UNIONPAY</option>
+        <option value="sbercard">SBERCARD</option>
+        <option value="nsme">NSMEP</option>
+        <option value="dinacard">DINACARD</option>
+        <option value="comproc">COMPROCARD</option>
+    </select>
 
-
-
-                  <div className="form-row">
-                    <label>Types</label>
-                    <select name="types" value={formData.types} onChange={handleInputChange}>
-                      <option value="">All Types</option>
+                </div>
+                <div className="form-row">
+                  <label>Type</label>
+                  <select name="types" value={formData.types} onChange={handleInputChange}>
+                  <option value="">All Types</option>
                       <option value="debit">Debit</option>
                       <option value="credit">Credit</option>
                       <option value="standard">Standard</option>
                       <option value="ltd">LTD</option>
-
-                    </select>
-                  </div>
-                  <div className="form-row">
-                    <label>Bases</label>
-                    <select name="bases" value={formData.bases} onChange={handleInputChange}>
+                  </select>
+                </div>
+                <div className="form-row">
+                  <label>Bases</label>
+                  <select name="bases" value={formData.bases} onChange={handleInputChange}>
         <option value="">All Bases</option>
         <option value="1000">⭐ DISCOUNTED REFUNDABLE [$4.90]</option>
         <option value="148">[15 AUG 2024] SNIFF US WORLD MIX</option>
@@ -894,144 +645,46 @@ const CreditCardForm = () => {
         <option value="39">[04 MAR 2024] SNIFF US WORLD MIX</option>
         <option value="38">[01 MAR 2024] SNIFF US WORLD MIX</option>
     </select>
-                  </div>
                 </div>
-                <div className='flex gap-5 items-center buttns'>
-
-
-                  <div className="bin">
-                    <div className="form-row">
-                      <label>CC Price Range</label>
-
-
-                    </div>
-                    <div className='slider-div'>
-                      <span className='flex gap-4'>
-                        <h1>${minValue}</h1>-<h1>${maxValue}</h1>
-                      </span>
-
-                      <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={minValue}
-                        onChange={handleMinRangeChange}
-                        className="thumb thumb--zindex-3"
-                      />
-                      <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        value={maxValue}
-                        onChange={handleMaxRangeChange}
-                        className="thumb thumb--zindex-4"
-                      />
-                      <div className="slider">
-                        <div className="slider__track" />
-                        <div className="slider__range" style={{ left: `${(minValue / 100) * 100}%`, right: `${100 - (maxValue / 100) * 100}%` }} />
-                      </div> </div> </div>
-
-                  <div className="form-row ml-auto btnss">
-                    <button type="submit" className='sumbit'>Search</button>
-                    <button type="button" className='clear' onClick={handleClear}>Clear</button>
-                  </div></div>
-              </form>
-            )}
-
-            <div className="data flex text-white items-center gap-3">
-              <hr className='w-6/12 border-black' /><label htmlFor="hide" className='w-24'>Hide Filter</label><input type="checkbox" name="hide" checked={isfilter}
-                onChange={handlefilterChange} /><hr className='w-6/12  border-black' />
-            </div>
-            <div className="datasets">
-              <div className="flex justify-between">
-                <button type="button" className='pre-order bg-black w-52 rounded-md ' onClick={handlePreorder}>Pre-Order</button>
-                <button type="button" className='b-selected bg-black w-52 p-2 rounded-md' onClick={handleorder}>Buy Selected</button>
+                <div className="form-row">
+                  <label>Price</label>
+                  <input type="number" name="price" value={formData.price} onChange={handleInputChange} placeholder="Enter Price" />
+                </div>
+                <div className="form-row">
+                  <label>Address</label>
+                  <input type='text' name="address" value={formData.address} onChange={handleInputChange} placeholder="Enter Address" />
+                </div>
+                <div className="form-row">
+                  <label>Bin Info</label>
+                  <input name="binfo" value={formData.binfo} onChange={handleInputChange} placeholder="Enter Bin Info" />
+                </div>
+                <div className="form-row">
+                  <label>Email</label>
+                  <input type='text' name="email" value={formData.email} onChange={handleInputChange} placeholder="Enter Email" />
+                </div>
+                <div className="form-row">
+                  <label>Dob</label>
+                  <input name="dob" value={formData.dob} onChange={handleInputChange} placeholder="Enter dob" />
+                </div>
+                <div className="form-row">
+                  <label>Phone</label>
+                  <input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter phone" />
+                </div>
+                <div className="form-row">
+                  <label>Name</label>
+                  <input name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter Name" />
+                </div>
               </div>
-              {isloader && (
-                <h1>Loading.....</h1>
-              )}
-              <div className='overflow-auto'>
-                <table border="1">
-                  <thead>
-                    <tr>
-                      <th>
-                        <input
-                          type="checkbox"
-                          onChange={handleSelectAll}
-                          checked={selectedRows.size === tableData.length}
-                        />
-                      </th>
-                      <th>BIN</th>
-                      <th>Exp Date</th>
-                      <th>First Name</th>
-                      <th>Country</th>
-                      <th>State</th>
-                      <th>City</th>
-                      <th>ZIP</th>
-                      <th>Info</th>
-                      <th>Address</th>
-                      <th>BIN Info</th>
-                      <th>Base</th>
-                      <th>Valid %</th>
-                      <th>Refundable</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {tableData.map((row) => (
-                      <tr key={row.id}>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={selectedRows.has(row.id)}
-                            onChange={() => handleRowSelect(row.id)}
-                          />
-                        </td>
-                        <td>{row.bin}</td>
-                        <td>{row.exp}</td>
-                        <td>{row.firstName}</td>
-                        <td>{row.country}</td>
-                        <td>{row.state}</td>
-                        <td>{row.city}</td>
-                        <td>{row.zip}</td>
-                        <td>
-                          <div className="info-container">
-                            <span className="info-icon text-center"><FontAwesomeIcon icon="fa-solid fa-info" className=' text-black bg-green-500 p-1 rounded-full' /></span>
-                            <div className="info-content">
-                              {row.DOB ? <p>DOB: <span className='text-green-600'>Yes</span></p> : <p>DOB: <span className='text-red-600'>No</span></p>}
-                              {row.ssn ? <p>SSN: <span className='text-green-600'>Yes</span></p> : <p>SSN: <span className='text-red-600'>No</span></p>}
-
-                              {row.email ? <p>EMAIL: <span className='text-green-600'>Yes</span></p> : <p>EMAIL: <span className='text-red-600'>No</span></p>}
-                              {row.phone ? <p>PHONE: <span className='text-green-600'>Yes</span></p> : <p>PHONE: <span className='text-red-600'>No</span></p>}
-
-                            </div>
-                          </div>
-                        </td>
-                        <td>{row.address ? <span className='text-green-500 text-lg'>&#10004;</span> : '❌'}</td>
-                        <td>{row.binInfo}</td>
-                        <td>
-                          <div className="info-container">
-                            <span className="info-icon text-center"><FontAwesomeIcon icon="fa-solid fa-info" className=' text-black bg-green-500 p-1 rounded-full' /></span>
-                            <div className="info-content">
-
-                              {row.base ? <p>{row.base}</p> : <p>base: <span className='text-red-600'>No</span></p>}
-
-                            </div>
-                          </div>
-                        </td>
-                        <td>{row.validPercent}</td>
-                        <td>{row.refundable ? <span>Yes &#128994;</span> : <span>No &#128308;</span>}</td>
-                        <td>{row.price}$</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>         
-            </div>
+              <div className="form-row">
+                <button type="submit" className="submit">Add Card Data</button>
+              </div>
+            </form>
+            {isloader && <h1>Loading.....</h1>}
+            <ToastContainer />
           </div>
         </div>
-      </div>  </div>
+      </div>
   );
 };
 
-export default CreditCardForm;
+export default Addcc;

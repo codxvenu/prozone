@@ -5,6 +5,7 @@
   
   .main-content {
     flex-grow: 1;
+    width: 100vw;
   }.app {
     display: flex;
     background: #31363F;
@@ -12,6 +13,7 @@
   
   .main-content {
     flex-grow: 1;
+    width: 100vw;
   }
   .main-form {
     padding: 47px 30px 10px 30px;
@@ -19,6 +21,7 @@
     color: #fff;
     border-radius: 25px 0 0 0;
     min-height: 92vh;
+    width: calc(100% - 220px);
   }
 
 .form-row {
@@ -168,21 +171,15 @@ input[type="range"]::-webkit-slider-thumb {
   pointer-events: all;
   position: relative;
 }
-.btns span{
-  padding: 0.64rem;
-  background: #525a6795;
-  font-size: 18px;
-  border-radius: 10px;
-}
 .sumbit{
   width: 200px;
   margin-right: 15px;
   margin-left: 15px;
-  background: green !important;
+  background: #00a100 !important;
 }
 button.clear{
   width: 150px;
-  background: #ff000075 !important;
+  background: #ff0000bf !important;
 }
 .datasets button{
   color: white;
@@ -234,12 +231,7 @@ th:first-child, td:first-child {
 input[type="checkbox"] {
   cursor: pointer;
 }
-select option{
-  background-color: #31363F;
-  color: #eee;
-  border-radius: 0;
-  border: none;
-}
+
 .info-content {
   display: none;
   position: absolute;
@@ -267,4 +259,83 @@ select option{
 }
 .data{
   color: var(--text-color);
+}
+
+@media only screen and (max-width: 768px){
+  .break{
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .form{
+    width: 100vw;
+  }
+  .main-form{
+    border-radius: 0;
+    width: 100vw;
+  }
+  .form-row input,.form-row select{
+    display: block;
+    width: 100%;
+    padding: 0 23px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: "Lato", sans-serif;
+    border: 0;
+    font-weight: 600;
+    height: 45px;
+    line-height: 45px;
+    outline: none;
+  }
+  .bin{
+    width: 100%;
+  }
+  .slider-div{
+    width: auto;
+    height: 90px;
+  }
+  .thumb{
+    width: 300px;
+  }
+  .slider{
+    width: 300px;
+    margin-bottom: 22px;
+  }
+  .slider__track, .slider__range {
+    border-radius: 3px;
+    height: 7px;
+    position: absolute;
+}
+span h1{
+  font-size: 20px;
+}
+.w-52 {
+  width: 8rem;
+}
+
+.w-24 {
+  width: 10rem;
+}
+.gap-3{
+  gap: -1px;
+  margin: 25px 0;
+}
+.hide{
+  display: none;
+}
+.nohide{
+  display: block;
+}
+.btnshide{
+  display: flex;
+}
+.buttns{
+  flex-direction: column;
+}
+.btnss{
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+.sumbit{
+  width: 150px;
+}
 }

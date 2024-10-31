@@ -40,7 +40,7 @@ h2  {
   font-weight: 800;
 }
 
-input {
+.form-group input {
   width: 85%;
   padding: 10px;
   margin-bottom: 15px;
@@ -57,7 +57,7 @@ input {
   outline: none;
 }
 
-span{
+.form-group span{
   width: 15%;
   padding: 10px;
   margin-bottom: 15px;
@@ -132,4 +132,15 @@ p a{
 }
 .Toastify__toast{
     width: auto;
+}
+@media only screen and (max-width: 768px){
+.img{
+  display: none;
+}
+.login-container{
+  display: block;
+}
+.form-container{
+  width: 100%;
+}
 }

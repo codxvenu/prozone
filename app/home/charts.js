@@ -37,7 +37,7 @@ const LinearGraph = () => {
     });
 
     useEffect(() => {
-      fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/graph-data`) // Update URL if needed
+      fetch(`/api/graph-data`) // Update URL if needed
           .then(response => response.json())
           .then(data => {
               const labels = data.map(entry => entry.day);

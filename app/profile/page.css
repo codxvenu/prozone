@@ -5,6 +5,7 @@
   
   .main-content {
     flex-grow: 1;
+    width: 100vw;
   }
   .main-form {
     padding: 47px 30px 10px 30px;
@@ -12,6 +13,7 @@
     color:var(--text-color);
     border-radius: 25px 0 0 0;
     min-height: 92vh;
+    width: calc(100% - 220px);
 }
 .main-form .acc{
   background-color: var(--backgroundform);
@@ -31,7 +33,7 @@ input {
   margin-bottom: 10px;
 }
 
-button {
+form button {
   padding: 10px;
   border-radius: 10px;
   background-color: #ed5d15 ;
@@ -42,3 +44,15 @@ button {
   display: flex;
   flex-direction: column;
 }
+@media only screen and (max-width: 768px){
+.grid-cols-2 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.main-form{
+  border-radius: 0;
+  width: 100%;
+}
+input {
+  padding: 10px;
+   width: 100%;
+}}

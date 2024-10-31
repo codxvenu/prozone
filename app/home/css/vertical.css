@@ -1,14 +1,18 @@
 .vertical-nav {
     width: 220px;
-    height: 100vh;
     background-color: #1a2833;
     color: #EEEEEE;
     padding: 20px;
+    padding-top: 5px;
+    height: calc(100% - 60px);
+    display: block;
+    margin-top: 20px
   }
-  
-  .vertical-nav .logo {
-    font-size: 1.5em;
-    margin-bottom: 20px;
+  .btns{
+    display: none;
+  }
+   .logo {
+    font-size: 1.8em;
   }
   
   .vertical-nav .nav-links {
@@ -17,7 +21,7 @@
   }
   
   .vertical-nav .nav-links li {
-    margin: 15px 0;
+    margin: 12px 0;
     
   }
   small{
@@ -30,7 +34,7 @@
     display: flex;
     gap: 12px;
     border: none;
-    padding: 0.48rem;
+    padding: 0.68rem;
     /* border: 50px; */
     border-radius: 5px;
     font-size: 14px;
@@ -39,9 +43,7 @@
   }
   
   .vertical-nav .contacts {
-    position: absolute;
     bottom: 20px;
-    width: 11.5%;
   }
   
 
@@ -50,5 +52,82 @@
     margin-left: 10px;
   }
 .nav-links{
-  margin-bottom: 75px;
+  margin-bottom: 10px;
 }
+.btns{
+  flex-wrap: wrap;
+}
+.btns a{
+  height: 50px;
+}
+.btns button{
+  font-weight: 600;
+  padding: 10px 5px !important;
+
+}
+.btns a {
+  
+  color: var(--text-color);
+  text-decoration: none;
+  display: flex;
+  gap: 15px;
+  border: none;
+  padding: 0.38rem 0.88rem;
+  /* border: 50px; */
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: var(--background-color);
+  align-items: center;
+  height: 40px;
+}
+.btns .become-seller ,.btn{
+  background-color: #ff6600;
+  border: none;
+  padding: 5px 8px;
+  color: #EEEEEE;
+  cursor: pointer;
+  border-radius: 6px;
+}
+@media (max-width: 768px) { 
+  .vertical-nav {
+    width: 100%;
+    height: max-content;
+    z-index: 1;
+    position: absolute;
+    margin-top: 0
+  }
+  .contacts li, .vertical-nav .nav-links li a {
+    color: #eee;
+    text-decoration: none;
+    display: flex;
+    gap: 12px;
+    border: none;
+    padding: .98rem;
+    border-radius: 5px;
+    font-size: 18px;
+    background-color: #20313e;
+    align-items: center;
+    font-weight: 700;
+}
+.vertical-nav .nav-links li {
+  margin: 15px 0;}
+
+.vertical-nav .contacts {
+  position: static;
+  /* bottom: 20px; */
+  width: 100%;
+  margin-top: 10px;
+}
+small {
+  font-size: 100%;
+}
+.hide{
+  display: none;
+}
+.nohide{
+  display: block;
+}
+.btnshide{
+  display: flex;
+}
+ }

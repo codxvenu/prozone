@@ -21,7 +21,7 @@ function LoginSignup() {
   const [email, setEmail] = useState("");
   const [mdsCode, setMdsCode] = useState("");
   const [captcha, setCaptcha] = useState("");
-  const [captchaUrl, setCaptchaUrl] = useState(`${process.env.NEXT_PUBLIC_BASE_API_URL}/captcha`);
+  const [captchaUrl, setCaptchaUrl] = useState(`/api/captcha`);
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const router = useRouter(); // Use useRouter from next/router
 
@@ -30,7 +30,7 @@ function LoginSignup() {
   }, []);
 
   const fetchCaptcha = () => {
-    setCaptchaUrl(`${process.env.NEXT_PUBLIC_BASE_API_URL}/captcha?${Date.now()}`);
+    setCaptchaUrl(`/api/captcha?${Date.now()}`);
   };
 
   const handleUsernameChange = (event) => {
@@ -62,7 +62,7 @@ function LoginSignup() {
     event.preventDefault();
     setIsLoading(true); // Set loading state
 
-    const url = isLogin ? `${process.env.NEXT_PUBLIC_BASE_API_URL}/login` : `${process.env.NEXT_PUBLIC_BASE_API_URL}/signup`;
+    const url = isLogin ? `/api/login` : `/api/signup`;
     const data = isLogin ? { username, password, mdsCode, captcha } : { username, password, email };
 
     try {
@@ -81,6 +81,10 @@ function LoginSignup() {
         if (result.message === "Login successful") {
           toast.success(result.message);
           router.push("/home"); // Redirect to home page after login
+          localStorage.setItem("username", username);
+          localStorage.setItem("role", result.role);
+          
+          
         } else {
           toast.error(result.message);
           fetchCaptcha(); // Refresh the CAPTCHA on error
@@ -100,6 +104,8 @@ function LoginSignup() {
       setIsLoading(false); // Reset loading state
     }
   };
+  
+  
 
   return (
     <div className="login-container">

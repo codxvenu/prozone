@@ -2,13 +2,13 @@
 import React, { useState, useRef } from 'react';
 import QRCode from 'qrcode.react';
 import axios from 'axios';
-
+import VerticalNav from '../home/verticalnav';
 import HorizontalNav from '../home/horizontal';
 import './page.css';
 
 
 
-const BillingPage = () => {
+const reseller = () => {
   const [transactionId, setTransactionId] = useState('');
   const [copySuccess, setCopySuccess] = useState('');
   const inputRef = useRef(null);
@@ -52,7 +52,7 @@ const BillingPage = () => {
         transactionId    ,
         username
       }, { withCredentials: true });
-      alert('Transaction ID sent successfully!');
+      alert('Seller ID sent successfully!');
      setIsloader(false)
       setTransactionId('');   
     } catch (error) {
@@ -73,12 +73,13 @@ const BillingPage = () => {
 
       <VerticalNav />
      <div className="main-form flex gap-20 h-min trans">   
-      <div className='flex gap-20 flex-col'>
+      <div className='flex flex-col'>
 
       <div className='flex gap-20 '>
      <div className="text flex flex-col gap-5 h-min ml-52 mt-20">
       <p>Please send BTC to this wallet:
       </p>
+      <p>Note : If u already Have 150$ In wallet Just enter <b>balance available</b></p>
       <input
           id="address"
           type="text"
@@ -88,6 +89,8 @@ const BillingPage = () => {
           style={{ cursor: 'pointer', userSelect: 'text' }} // Ensure text can be selected
           onClick={handleCopy} // Trigger copy action on click
         />
+        <p>Required Amount :
+        150$ To Become Seller</p>
         <p>Required Confirmations :
         1</p>
         <p>Fees Commission :
@@ -125,4 +128,4 @@ const BillingPage = () => {
   );
 };
 
-export default BillingPage;
+export default reseller;

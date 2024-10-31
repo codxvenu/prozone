@@ -1,8 +1,8 @@
 import React from 'react'
-import Login from "./login/page";
+import LoginSignup from "./login/page";
 const page = () => {
   return (
-    <Login></Login>
+    <LoginSignup/>
   )
 }
 
